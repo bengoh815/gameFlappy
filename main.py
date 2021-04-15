@@ -45,6 +45,7 @@ while True:
         if event.type == pygame.QUIT:
             sys.exit()
         if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
                 gravity_variable = 0
                 delta_y -= bird_jump
 
