@@ -18,7 +18,7 @@ bird = pygame.image.load("./static_images/bird.png")
 bird_hitbox = bird.get_rect(topleft=(100, 200))
 bird_velocity_i_y = 0
 bird_jumping = False
-bird_jump = 10
+bird_jump = 11
 bird_jump_variable = 0
 
 # pipe
@@ -26,8 +26,8 @@ pipe = pygame.image.load("./static_images/pipe.png")
 pipe_hitbox = pipe.get_rect(topleft=(650, 300))
 
 # gravity
-gravity = 2
-gravity_variable = (gravity*gravity) / 10
+gravity = 1
+
 
 
 while True:
@@ -45,14 +45,10 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 print('SPACEEEEEEEEE')
-                if bird_jumping == False:
-                    bird_jumping = True
-                    bird_jump_variable = bird_jump
+                bird_jump_variable = bird_jump
 
     bird_hitbox.y -= bird_jump_variable
-    bird_jump_variable -= gravity_variable
-    if bird_jump_variable < 0:
-        bird_jumping = False
+    bird_jump_variable -= gravity
 
     print(bird_hitbox.y, bird_jump_variable)
 
@@ -60,4 +56,4 @@ while True:
             sys.exit()
 
     pygame.display.update()
-    clock.tick(30)
+    clock.tick(20)
