@@ -27,7 +27,9 @@ bird_jump_variable = 0
 
 # pipe
 pipe = pygame.image.load("./static_images/pipe.png")
+pipe1 = pygame.image.load("./static_images/pipe_upsideDown.png")
 pipe_hitbox = pipe.get_rect(topleft=(650, 300))
+pipe1_hitbox = pipe.get_rect(bottomleft=(pipe_hitbox.x, (pipe_hitbox.y - 175)))
 added_score = False
 
 # gravity
@@ -56,6 +58,7 @@ while True:
     bg_x -= object_move_speed
     bg1_x -= object_move_speed
     pipe_hitbox.x -= object_move_speed
+    pipe1_hitbox.x =pipe_hitbox.x
 
     # rendering
     # bg
@@ -65,13 +68,14 @@ while True:
     screen.blit(bird, bird_hitbox)
     # pipe
     screen.blit(pipe, pipe_hitbox)
+    screen.blit(pipe1, pipe1_hitbox)
 
     # check background
     bg_x = bg_move(bg_x)
     bg1_x = bg_move(bg1_x)
 
     # check death
-    if bird_hitbox.colliderect(pipe_hitbox) or (bird_hitbox.y >= 480):
+    if bird_hitbox.colliderect(pipe_hitbox) or bird_hitbox.colliderect(pipe1_hitbox) or (bird_hitbox.y >= 480):
         print('Game over~')
         sys.exit()
 
