@@ -42,7 +42,7 @@ def bg_move(x):
         return 900
     return x
 
-
+pygame.event.clear
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -51,8 +51,6 @@ while True:
             if event.key == pygame.K_SPACE:
                 bird_jump_variable = bird_jump
 
-    bird_hitbox.y -= bird_jump_variable
-    bird_jump_variable -= gravity
 
     # objects moving left
     bg_x -= object_move_speed
@@ -69,6 +67,10 @@ while True:
     # pipe
     screen.blit(pipe, pipe_hitbox)
     screen.blit(pipe1, pipe1_hitbox)
+
+    # gravity
+    bird_hitbox.y -= bird_jump_variable
+    bird_jump_variable -= gravity
 
     # check background
     bg_x = bg_move(bg_x)
